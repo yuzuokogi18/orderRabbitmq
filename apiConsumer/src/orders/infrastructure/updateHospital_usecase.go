@@ -1,0 +1,39 @@
+package infrastructure
+
+import (
+	"frontConsumer/src/orders/application"
+	"frontConsumer/src/orders/domain"
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
+)
+
+type UpdateOrderController struct {
+	useCase *application.UpdateOrderUseCase
+}
+
+func NewUpdateHospitalController(useCase *application.UpdateOrderUseCase) *UpdateOrderController {
+	return &UpdateOrderController{useCase: useCase}
+}
+
+func (controller *UpdateOrderController) Execute(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Id de hospital no encontrada"})
+		return
+	}
+
+	var order domain.Order
+	if err := c.ShouldBindJSON(&order); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	controller.useCase.Run(int32(id), order)
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Hospital actualizado exitosamente",
+		"data": order})
+}
