@@ -30,7 +30,7 @@ func (controller *CreateOrderController) Execute(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"status": "Hospital creado correctamente",
+		"status": "Order creado correctamente",
 		"data":   order,
 	})
 }

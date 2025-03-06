@@ -77,7 +77,7 @@ func (repo *MysqlRepository) GetAll() ([]domain.Order, error) {
 	query := "SELECT id, name, description, price, userName, userCellphone, status FROM orders"
 	rows, err := repo.db.Query(query)
 	if err != nil {
-		return nil, fmt.Errorf("Error al obtener órdenes: %v", err)
+		return nil, fmt.Errorf("Error al ejecutar la consulta: %v", err)
 	}
 	defer rows.Close()
 
@@ -85,13 +85,13 @@ func (repo *MysqlRepository) GetAll() ([]domain.Order, error) {
 	for rows.Next() {
 		var order domain.Order
 		if err := rows.Scan(&order.Id, &order.Name, &order.Description, &order.Price, &order.UserName, &order.UserCellphone, &order.Status); err != nil {
-			return nil, err
+			return nil, fmt.Errorf("Error al escanear los resultados: %v", err)
 		}
 		orders = append(orders, order)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Error durante la iteración de resultados: %v", err)
 	}
 
 	return orders, nil

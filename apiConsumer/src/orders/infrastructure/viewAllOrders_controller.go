@@ -21,5 +21,5 @@ func (controller *ViewAllOrderController) Execute(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"hospitals": orders})
+	c.JSON(http.StatusOK, gin.H{"orders": orders})
 }

@@ -21,7 +21,7 @@ func (controller *UpdateOrderController) Execute(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Id de hospital no encontrada"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Id de order no encontrada"})
 		return
 	}
 
@@ -34,6 +34,6 @@ func (controller *UpdateOrderController) Execute(c *gin.Context) {
 	controller.useCase.Run(int32(id), order)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Hospital actualizado exitosamente",
+		"message": "Order actualizado exitosamente",
 		"data": order})
 }

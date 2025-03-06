@@ -42,8 +42,8 @@ func InitRoutes() {
 	router.GET("/order/:id", getOrderByIdController.Execute)
 	router.GET("/orders/cellphone/:cellphone", getOrderByCellphoneController.Execute)
 
-
-	if err := router.Run(":8080"); err != nil {
+	// Cambiar el puerto de 8080 a 8081
+	if err := router.Run(":8082"); err != nil {
 		log.Fatalf("Error al iniciar el servidor: %v", err)
 	}
 }

@@ -20,7 +20,7 @@ func (controller *DeleteOrderController) Execute(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Id de hospital no encontrada"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Id de order no encontrada"})
 		return
 	}
 
