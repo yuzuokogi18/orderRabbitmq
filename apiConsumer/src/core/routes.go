@@ -12,7 +12,6 @@ import (
 func InitRoutes() {
 	mysqlConn, err := GetDBPool()
 	if err != nil {
-
 		log.Fatalf("Error al obtener la conexión a la base de datos: %v", err)
 	}
 
@@ -22,20 +21,27 @@ func InitRoutes() {
 	updateOrderUseCase := application.NewUpdateOrderUseCase(orderRepository)
 	deleteOrderUseCase := application.NewDeleteOrderUseCase(orderRepository)
 	getAllOrdersUseCase := application.NewViewAllOrderUseCase(orderRepository)
+	getOrderByIdUseCase := application.NewViewOrderByIdUseCase(orderRepository)
+	getOrderByCellphoneUseCase := application.NewViewByCellphoneOrderUseCase(orderRepository)
 
 	createOrderController := infrastructure.NewCreateOrderController(createOrderUseCase)
-	updateOrderController := infrastructure.NewUpdateHospitalController(updateOrderUseCase)
+	updateOrderController := infrastructure.NewUpdateOrderController(updateOrderUseCase)
 	deleteOrderController := infrastructure.NewDeleteOrderController(deleteOrderUseCase)
-	getAllOrdersController := infrastructure.NewViewAllHospitalController(getAllOrdersUseCase)
+	getAllOrdersController := infrastructure.NewViewAllOrderController(getAllOrdersUseCase)
+	getOrderByIdController := infrastructure.NewViewByIdOrderController(getOrderByIdUseCase)
+	getOrderByCellphoneController := infrastructure.NewViewByCellphoneOrderController(getOrderByCellphoneUseCase)
 
 	router := gin.Default()
-	middleware := middlewares.NewCorsMiddleware()	
+	middleware := middleware.NewCorsMiddleware()	
 	router.Use(middleware)
 
-	router.POST("/hospital", createOrderController.Execute)
-	router.PUT("/hospital/:id", updateOrderController.Execute)
-	router.DELETE("/hospital/:id", deleteOrderController.Execute)
-	router.GET("/hospital", getAllOrdersController.Execute)
+	router.POST("/order", createOrderController.Execute)
+	router.PUT("/order/:id", updateOrderController.Execute)
+	router.DELETE("/order/:id", deleteOrderController.Execute)
+	router.GET("/order", getAllOrdersController.Execute)
+	router.GET("/order/:id", getOrderByIdController.Execute)
+	router.GET("/orders/cellphone/:cellphone", getOrderByCellphoneController.Execute)
+
 
 	if err := router.Run(":8080"); err != nil {
 		log.Fatalf("Error al iniciar el servidor: %v", err)

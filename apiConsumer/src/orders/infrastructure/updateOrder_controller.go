@@ -13,7 +13,7 @@ type UpdateOrderController struct {
 	useCase *application.UpdateOrderUseCase
 }
 
-func NewUpdateHospitalController(useCase *application.UpdateOrderUseCase) *UpdateOrderController {
+func NewUpdateOrderController(useCase *application.UpdateOrderUseCase) *UpdateOrderController {
 	return &UpdateOrderController{useCase: useCase}
 }
 

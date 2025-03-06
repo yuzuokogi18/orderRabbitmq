@@ -10,7 +10,7 @@ type ViewAllOrderController struct {
 	useCase *application.ViewAllOrderUseCase
 }
 
-func NewViewAllHospitalController(useCase *application.ViewAllOrderUseCase) *ViewAllOrderController {
+func NewViewAllOrderController(useCase *application.ViewAllOrderUseCase) *ViewAllOrderController {
 	return &ViewAllOrderController{useCase: useCase}
 }
 
