@@ -1,8 +1,8 @@
 package infrastructure
 
 import (
-	"frontConsumer/src/orders/application"
-	"frontConsumer/src/orders/domain"
+	"apiConsumer/src/orders/application"
+	"apiConsumer/src/orders/domain"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

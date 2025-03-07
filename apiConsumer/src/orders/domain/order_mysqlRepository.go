@@ -1,6 +1,6 @@
 package domain
 
-type IOrder interface {
+type IOrderMysq interface {
 	Save(order *Order) error
 	GetById(id int32) (*Order, error)
 	GetByCellphone(cellphone int32) ([]Order, error)

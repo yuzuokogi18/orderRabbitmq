@@ -1,15 +1,15 @@
 package application
 
-import "frontConsumer/src/orders/domain"
+import "apiConsumer/src/orders/domain"
 
 type DeleteOrderUseCase struct {
-	db domain.IOrder
+	mysqlRepository domain.IOrderMysq
 }
 
-func NewDeleteOrderUseCase(db domain.IOrder) *DeleteOrderUseCase {
-	return &DeleteOrderUseCase{db: db}
+func NewDeleteOrderUseCase(mysqlRepository domain.IOrderMysq) *DeleteOrderUseCase {
+	return &DeleteOrderUseCase{mysqlRepository: mysqlRepository}
 }
 
 func (uc *DeleteOrderUseCase) Run(id int32) error {
-	return uc.db.Delete(id)
+	return uc.mysqlRepository.Delete(id)
 }

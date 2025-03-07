@@ -1,7 +1,7 @@
 package main
 
 import (
-	"frontConsumer/src/core"
+	"apiConsumer/src/core"
 )
 
 func main() {

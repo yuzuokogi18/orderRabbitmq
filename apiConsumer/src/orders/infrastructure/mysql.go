@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"frontConsumer/src/orders/domain"
+	"apiConsumer/src/orders/domain"
 	"database/sql"
 	"fmt"
 

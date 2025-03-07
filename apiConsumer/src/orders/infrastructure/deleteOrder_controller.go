@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"frontConsumer/src/orders/application"
+	"apiConsumer/src/orders/application"
 	"net/http"
 	"strconv"
 

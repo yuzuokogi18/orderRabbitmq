@@ -1,15 +1,15 @@
 package application
 
-import "frontConsumer/src/orders/domain"
+import "apiConsumer/src/orders/domain"
 
 type UpdateOrderUseCase struct {
-	db domain.IOrder
+	mysqlRepository domain.IOrderMysq
 }
 
-func NewUpdateOrderUseCase(db domain.IOrder) *UpdateOrderUseCase {
-	return &UpdateOrderUseCase{db: db}
+func NewUpdateOrderUseCase(mysqlRepository domain.IOrderMysq) *UpdateOrderUseCase {
+	return &UpdateOrderUseCase{mysqlRepository: mysqlRepository}
 }
 
 func (uc *UpdateOrderUseCase) Run(id int32, order domain.Order) error {
-	return uc.db.Update(id, order)
+	return uc.mysqlRepository.Update(id, order)
 }

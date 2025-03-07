@@ -1,15 +1,15 @@
 package application
 
-import "frontConsumer/src/orders/domain"
+import "apiConsumer/src/orders/domain"
 
 type ViewAllOrderUseCase struct {
-	db domain.IOrder
+	mysqlRepository domain.IOrderMysq
 }
 
-func NewViewAllOrderUseCase(db domain.IOrder) *ViewAllOrderUseCase {
-	return &ViewAllOrderUseCase{db: db}
+func NewViewAllOrderUseCase(mysqlRepository domain.IOrderMysq) *ViewAllOrderUseCase {
+	return &ViewAllOrderUseCase{mysqlRepository: mysqlRepository}
 }
 
 func (uc *ViewAllOrderUseCase) Run() ([]domain.Order, error) {
-	return uc.db.GetAll()
+	return uc.mysqlRepository.GetAll()
 }
