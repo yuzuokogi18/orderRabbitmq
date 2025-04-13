@@ -1,5 +1,4 @@
 package infrastructure
-
 import (
 	"apiConsumer/src/orders/application"
 	"apiConsumer/src/orders/domain"

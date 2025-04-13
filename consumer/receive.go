@@ -15,7 +15,7 @@ func failOnError(err error, msg string) {
 func main() {
     client := resty.New()
 
-    conn, err := amqp.Dial("amqp://guest:guest@23.21.140.225:5672/")
+    conn, err := amqp.Dial("amqp://luna:luna1234@44.194.169.99:5672/")
     failOnError(err, "Failed to connect to RabbitMQ")
     defer conn.Close()
 
@@ -35,7 +35,7 @@ func main() {
     failOnError(err, "Failed to declare an exchange")
 
     q, err := ch.QueueDeclare(
-        "myConsumer",    // name
+        "comidas",    // name
         false, // durable
         false, // delete when unused
         true,  // exclusive

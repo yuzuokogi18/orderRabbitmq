@@ -1,5 +1,4 @@
 package infrastructure
-
 import (
     "context"
     "encoding/json"
